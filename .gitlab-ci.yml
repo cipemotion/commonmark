@@ -1,7 +1,7 @@
 image: tetraweb/php:5.6-cli
 
 before_script:
-  - command -v docker-php-ext-enable >/dev/null && docker-php-ext-enable zip mcrypt mbstring
+  - docker-php-ext-enable xdebug zip mcrypt mbstring
 
 variables:
   WITH_XDEBUG: "1"
