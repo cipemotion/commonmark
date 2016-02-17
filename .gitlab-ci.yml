@@ -1,14 +1,36 @@
 image: tetraweb/php:5.6-cli
 
 before_script:
-  - docker-php-ext-enable zip
-  - docker-php-ext-enable mbstring
+  - command -v docker-php-ext-enable >/dev/null && docker-php-ext-enable zip mcrypt mbstring
 
 variables:
   WITH_XDEBUG: "1"
 
 stages:
   - cs
+  - test
+
+php-5.6:
+  type: test
+  image: tetraweb/php:5.6-cli
+  script:
+    - php -v
+    - composer self-update
+    - composer install --no-progress --no-scripts
+    - php vendor/bin/phpunit --coverage-text --colors=never
+  except:
+    - tags
+
+php-7.0:
+  type: test
+  image: tetraweb/php:7.0-cli
+  script:
+    - php -v
+    - composer self-update
+    - composer install --no-progress --no-scripts
+    - php vendor/bin/phpunit --coverage-text --colors=never
+  except:
+    - tags
 
 phpcs:
   type: cs

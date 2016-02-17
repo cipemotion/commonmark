@@ -11,6 +11,9 @@
     "require": {
         "league/commonmark": "0.13.*"
     },
+    "require-dev": {
+        "phpunit/phpunit": "5.1.*"
+    },
     "autoload": {
         "psr-4": {
             "CipeMotion\\CommonMark\\": "src"
