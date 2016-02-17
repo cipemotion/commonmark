@@ -1,0 +1,20 @@
+{
+    "name": "cipemotion/commonmark",
+    "description": "A League CommonMark extension.",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Alex Bouma",
+            "email": "me@alexbouma.me"
+        }
+    ],
+    "require": {
+        "league/commonmark": "0.13.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "CipeMotion\\CommonMark\\": "src"
+        }
+    },
+    "minimum-stability": "stable"
+}
