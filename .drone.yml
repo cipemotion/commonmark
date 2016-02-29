@@ -18,3 +18,7 @@ build:
       - composer self-update
       - composer install --no-progress --no-scripts
       - php vendor/bin/phpunit --coverage-text --colors=never
+
+notify:
+  slack:
+    webhook_url: https://hooks.slack.com/services/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
