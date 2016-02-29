@@ -22,3 +22,5 @@ build:
 notify:
   slack:
     webhook_url: https://hooks.slack.com/services/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
+    channel: development
+    username: drone
