@@ -1,4 +1,4 @@
-## CipeMotion CommonMark extensin
+## CipeMotion CommonMark extension
 
 ### Inline converter
 
