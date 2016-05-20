@@ -58,6 +58,27 @@ class InlineCommonMarkTest extends PHPUnit_Framework_TestCase
     public function testLink()
     {
         $this->assertEquals(
+            "<p>Simulise <a href=\"www.simulise.com/c_pag_h\">site</a>!</p>\n",
+            $this->converter->convertToHtml('Simulise [site](www.simulise.com/c_pag_h)!')
+        );
+
+        $this->assertEquals(
+            "<p>Simulise <a href=\"https://www.simulise.com/c_pag_h\">site</a>!</p>\n",
+            $this->converter->convertToHtml('Simulise [site](https://www.simulise.com/c_pag_h)!')
+        );
+    }
+
+    public function testImage()
+    {
+        $this->assertEquals(
+            "<p>Simulise !<a href=\"www.simulise.com/c_pag_h\">site</a>!</p>\n",
+            $this->converter->convertToHtml('Simulise ![site](www.simulise.com/c_pag_h)!')
+        );
+    }
+
+    public function testAutoLink()
+    {
+        $this->assertEquals(
             "<p>Simulise www.simulise.com/c_pag_h!</p>\n",
             $this->converter->convertToHtml('Simulise www.simulise.com/c_pag_h!')
         );

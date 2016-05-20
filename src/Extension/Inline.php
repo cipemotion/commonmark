@@ -88,6 +88,8 @@ class Inline extends CommonmarkExtension
         return [
             'League\CommonMark\Inline\Element\Code'     => new InlineRenderer\CodeRenderer(),
             'League\CommonMark\Inline\Element\Emphasis' => new InlineRenderer\EmphasisRenderer(),
+            'League\CommonMark\Inline\Element\Image'    => new InlineRenderer\LinkRenderer(),
+            'League\CommonMark\Inline\Element\Link'     => new InlineRenderer\LinkRenderer(),
             'League\CommonMark\Inline\Element\Newline'  => new InlineRenderer\NewlineRenderer(),
             'League\CommonMark\Inline\Element\Strong'   => new InlineRenderer\StrongRenderer(),
             'CipeMotion\CommonMark\Inline\Element\Del'  => new CipeMotionInlineRenderer\DelRenderer(),

@@ -8,6 +8,8 @@ Supports the following inline parsers:
 - `*bold*` to `<strong>bold</strong>`
 - `~deleted~` to `<del>deleted</del>`
 - `` `code` `` to `<code>code</code>`
+- `[link](https://github.com/cipemotion/commonmark)` to `<a href="https://github.com/cipemotion/commonmark">link</a>`
+- `![link](https://github.com/cipemotion/commonmark)` to `!<a href="https://github.com/cipemotion/commonmark">link</a>` (images are disabled)
 - newlines to paragraphs
 - stripping of html (optional)
 
