@@ -9,6 +9,7 @@
         }
     ],
     "require": {
+        "php": ">=7.0",
         "league/commonmark": "0.14.*"
     },
     "require-dev": {
