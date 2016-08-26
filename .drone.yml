@@ -1,0 +1,26 @@
+clone:
+  path: github.com/cipemotion/commonmark
+
+build:
+  test-php56:
+    image: tetraweb/php:5.6
+    commands:
+      - docker-php-ext-enable xdebug zip mcrypt mbstring
+      - php -v
+      - composer self-update
+      - composer install --no-progress --no-scripts
+      - php vendor/bin/phpunit --coverage-text --colors=never
+  test-php70:
+    image: tetraweb/php:7.0
+    commands:
+      - docker-php-ext-enable xdebug zip mcrypt mbstring
+      - php -v
+      - composer self-update
+      - composer install --no-progress --no-scripts
+      - php vendor/bin/phpunit --coverage-text --colors=never
+
+notify:
+  slack:
+    webhook_url: https://hooks.slack.com/services/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
+    channel: development
+    username: drone

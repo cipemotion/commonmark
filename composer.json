@@ -5,11 +5,14 @@
     "authors": [
         {
             "name": "Alex Bouma",
-            "email": "me@alexbouma.me"
+            "email": "alex@cipemotion.com"
         }
     ],
     "require": {
-        "league/commonmark": "0.13.*"
+        "league/commonmark": "0.14.*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "5.5.*"
     },
     "autoload": {
         "psr-4": {
