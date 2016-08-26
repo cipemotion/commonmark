@@ -6,5 +6,4 @@ use League\CommonMark\Inline\Element\AbstractInlineContainer;
 
 class Del extends AbstractInlineContainer
 {
-    //
 }
