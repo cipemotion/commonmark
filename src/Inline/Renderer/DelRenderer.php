@@ -13,8 +13,8 @@ class DelRenderer implements InlineRendererInterface
     /**
      * Render the del.
      *
-     * @param \CipeMotion\CommonMark\Inline\Element\Del $inline
-     * @param \League\CommonMark\ElementRendererInterface     $htmlRenderer
+     * @param \CipeMotion\CommonMark\Inline\Element\Del   $inline
+     * @param \League\CommonMark\ElementRendererInterface $htmlRenderer
      *
      * @return \League\CommonMark\HtmlElement
      */
