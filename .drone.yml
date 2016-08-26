@@ -1,6 +1,10 @@
 clone:
   path: github.com/cipemotion/commonmark
 
+cache:
+  mount:
+    - vendor
+
 build:
   test-php70:
     image: tetraweb/php:7.0
