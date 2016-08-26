@@ -42,8 +42,8 @@ class TextRenderer implements InlineRendererInterface
 
         if ($this->safe) {
             return $htmlRenderer->escape($inline->getContent());
-        } else {
-            return $inline->getContent();
         }
+
+        return $inline->getContent();
     }
 }

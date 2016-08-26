@@ -2,7 +2,6 @@
 
 namespace CipeMotion\CommonMark\Extension;
 
-use League\CommonMark\Block\Parser as BlockParser;
 use League\CommonMark\Inline\Parser as InlineParser;
 use League\CommonMark\Block\Renderer as BlockRenderer;
 use League\CommonMark\Inline\Renderer as InlineRenderer;
@@ -98,7 +97,7 @@ class Inline extends CommonmarkExtension
     }
 
     /**
-     * Returns the name of the extension
+     * Returns the name of the extension.
      *
      * @return string
      */
