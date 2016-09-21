@@ -10,7 +10,7 @@
     ],
     "require": {
         "php": ">=7.0",
-        "league/commonmark": "0.14.*"
+        "league/commonmark": "0.15.*"
     },
     "require-dev": {
         "phpunit/phpunit": "5.5.*"
