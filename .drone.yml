@@ -15,7 +15,7 @@ pipeline:
   test-php72:
     image: stayallive/php:7.2
     commands:
-      - docker-php-ext-enable zip mcrypt bcmath pcntl
+      - docker-php-ext-enable zip bcmath pcntl
       - php -v
       - composer self-update
       - composer install --no-progress --no-scripts
