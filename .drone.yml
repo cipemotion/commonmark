@@ -11,7 +11,7 @@ pipeline:
       - php -v
       - composer self-update
       - composer install --no-progress --no-scripts
-      - php vendor/bin/phpunit --coverage-text --colors=never
+      - php vendor/bin/phpunit --colors=never
   test-php72:
     image: stayallive/php:7.2
     commands:
@@ -19,4 +19,4 @@ pipeline:
       - php -v
       - composer self-update
       - composer install --no-progress --no-scripts
-      - php vendor/bin/phpunit --coverage-text --colors=never
+      - php vendor/bin/phpunit --colors=never
