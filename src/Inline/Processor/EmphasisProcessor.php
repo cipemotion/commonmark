@@ -5,9 +5,9 @@ namespace CipeMotion\CommonMark\Inline\Processor;
 use League\CommonMark\Delimiter\Delimiter;
 use League\CommonMark\Inline\Element\Text;
 use League\CommonMark\Inline\Element\Strong;
+use CipeMotion\CommonMark\Inline\Element\Del;
 use League\CommonMark\Inline\Element\Emphasis;
 use League\CommonMark\Delimiter\DelimiterStack;
-use CipeMotion\CommonMark\Inline\Element\Del;
 use League\CommonMark\Inline\Processor\InlineProcessorInterface;
 
 class EmphasisProcessor implements InlineProcessorInterface
