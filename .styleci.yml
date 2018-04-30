@@ -1,6 +1,5 @@
 preset: psr2
 risky: true
-linting: true
 
 enabled:
   - align_equals
@@ -25,6 +24,10 @@ enabled:
   - phpdoc_type_to_var
   - single_quote
   - whitespace_after_comma_in_array
+  - length_ordered_imports
+  - no_blank_lines_after_return
+  - no_blank_lines_between_imports
+  - no_blank_lines_between_traits
 
 finder:
   name:
