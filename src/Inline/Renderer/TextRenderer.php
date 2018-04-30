@@ -2,6 +2,7 @@
 
 namespace CipeMotion\CommonMark\Inline\Renderer;
 
+use League\CommonMark\Util\Xml;
 use League\CommonMark\Inline\Element\Text;
 use League\CommonMark\ElementRendererInterface;
 use League\CommonMark\Inline\Element\AbstractInline;
@@ -41,7 +42,7 @@ class TextRenderer implements InlineRendererInterface
         }
 
         if ($this->safe) {
-            return $htmlRenderer->escape($inline->getContent());
+            return Xml::escape($inline->getContent());
         }
 
         return $inline->getContent();

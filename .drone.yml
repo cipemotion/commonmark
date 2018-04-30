@@ -1,16 +1,22 @@
 clone:
-  path: github.com/cipemotion/commonmark
+  git:
+    image: plugins/git
+    depth: 1
 
-cache:
-  mount:
-    - vendor
-
-build:
-  test-php70:
-    image: tetraweb/php:7.0
+pipeline:
+  test-php71:
+    image: stayallive/php:7.1
     commands:
-      - docker-php-ext-enable xdebug zip mcrypt mbstring
+      - docker-php-ext-enable zip mcrypt bcmath pcntl
       - php -v
       - composer self-update
       - composer install --no-progress --no-scripts
-      - php vendor/bin/phpunit --coverage-text --colors=never
+      - php vendor/bin/phpunit --colors=never
+  test-php72:
+    image: stayallive/php:7.2
+    commands:
+      - docker-php-ext-enable zip bcmath pcntl
+      - php -v
+      - composer self-update
+      - composer install --no-progress --no-scripts
+      - php vendor/bin/phpunit --colors=never
