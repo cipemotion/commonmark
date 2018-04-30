@@ -1,8 +1,9 @@
 <?php
 
+use PHPUnit\Framework\TestCase;
 use CipeMotion\CommonMark\Markdown;
 
-class InlineCommonMarkTest extends PHPUnit_Framework_TestCase
+class InlineCommonMarkTest extends TestCase
 {
     /**
      * The markdown converter.

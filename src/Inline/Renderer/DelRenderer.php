@@ -2,9 +2,10 @@
 
 namespace CipeMotion\CommonMark\Inline\Renderer;
 
+use League\CommonMark\Util\Xml;
 use League\CommonMark\HtmlElement;
-use League\CommonMark\ElementRendererInterface;
 use CipeMotion\CommonMark\Inline\Element\Del;
+use League\CommonMark\ElementRendererInterface;
 use League\CommonMark\Inline\Element\AbstractInline;
 use League\CommonMark\Inline\Renderer\InlineRendererInterface;
 
@@ -25,8 +26,9 @@ class DelRenderer implements InlineRendererInterface
         }
 
         $attrs = [];
+
         foreach ($inline->getData('attributes', []) as $key => $value) {
-            $attrs[$key] = $htmlRenderer->escape($value, true);
+            $attrs[$key] = Xml::escape($value, true);
         }
 
         return new HtmlElement('del', $attrs, $htmlRenderer->renderInlines($inline->children()));
