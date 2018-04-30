@@ -3,7 +3,7 @@ clone:
     image: plugins/git
     depth: 1
 
-build:
+pipeline:
   test-php71:
     image: stayallive/php:7.1
     commands:
