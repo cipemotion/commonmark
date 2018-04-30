@@ -5,9 +5,9 @@ namespace CipeMotion\CommonMark\Inline\Parser;
 use League\CommonMark\Environment;
 use League\CommonMark\Util\RegexHelper;
 use League\CommonMark\Util\Configuration;
-use League\CommonMark\InlineParserContext;
-use League\CommonMark\Inline\Element\Text;
 use League\CommonMark\Delimiter\Delimiter;
+use League\CommonMark\Inline\Element\Text;
+use League\CommonMark\InlineParserContext;
 use League\CommonMark\EnvironmentAwareInterface;
 use League\CommonMark\Inline\Parser\AbstractInlineParser;
 
