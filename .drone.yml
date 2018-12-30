@@ -4,19 +4,29 @@ clone:
     depth: 1
 
 pipeline:
-  test-php71:
+  prepare:
+    group: prepare
     image: stayallive/php:7.1
     commands:
       - docker-php-ext-enable zip mcrypt bcmath pcntl
       - php -v
       - composer self-update
       - composer install --no-progress --no-scripts
+  test-php71:
+    group: test
+    image: stayallive/php:7.1
+    commands:
+      - docker-php-ext-enable zip mcrypt bcmath pcntl
       - php vendor/bin/phpunit --colors=never
   test-php72:
+    group: test
     image: stayallive/php:7.2
     commands:
       - docker-php-ext-enable zip bcmath pcntl
-      - php -v
-      - composer self-update
-      - composer install --no-progress --no-scripts
+      - php vendor/bin/phpunit --colors=never
+  test-php73:
+    group: test
+    image: stayallive/php:7.3
+    commands:
+      - docker-php-ext-enable zip bcmath pcntl
       - php vendor/bin/phpunit --colors=never
