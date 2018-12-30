@@ -6,18 +6,12 @@ clone:
 pipeline:
   prepare:
     group: prepare
-    image: stayallive/php:7.0
+    image: stayallive/php:7.1
     commands:
       - docker-php-ext-enable zip mcrypt bcmath pcntl
       - php -v
       - composer self-update
       - composer install --no-progress --no-scripts
-  test-php70:
-    group: test
-    image: stayallive/php:7.0
-    commands:
-      - docker-php-ext-enable zip mcrypt bcmath pcntl
-      - php vendor/bin/phpunit --colors=never
   test-php71:
     group: test
     image: stayallive/php:7.1
