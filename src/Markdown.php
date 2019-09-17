@@ -4,7 +4,7 @@ namespace CipeMotion\CommonMark;
 
 use League\CommonMark\Environment;
 use League\CommonMark\CommonMarkConverter;
-use CipeMotion\CommonMark\Extension\Inline;
+use CipeMotion\CommonMark\Extension\InlineExtension;
 
 class Markdown
 {
@@ -15,14 +15,14 @@ class Markdown
      *
      * @return \League\CommonMark\CommonMarkConverter
      */
-    public static function getInlineConverter($allowHtml = false)
+    public static function getInlineConverter($allowHtml = false): CommonMarkConverter
     {
-        $environment = new Environment();
+        $environment = new Environment;
 
-        $environment->addExtension(new Inline(!$allowHtml));
+        $environment->addExtension(new InlineExtension(!$allowHtml));
 
         return new CommonMarkConverter([
-            'safe' => !$allowHtml,
+            'html_input' => $allowHtml ? 'allow' : 'strip',
         ], $environment);
     }
 }

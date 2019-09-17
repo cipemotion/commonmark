@@ -2,8 +2,15 @@
 
 namespace CipeMotion\CommonMark\Inline\Element;
 
-use League\CommonMark\Inline\Element\AbstractInlineContainer;
+use League\CommonMark\Inline\Element\AbstractInline;
 
-class Del extends AbstractInlineContainer
+class Del extends AbstractInline
 {
+    /**
+     * {@inheritdoc}
+     */
+    public function isContainer(): bool
+    {
+        return true;
+    }
 }

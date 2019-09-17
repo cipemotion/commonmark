@@ -1,32 +1,34 @@
-clone:
-  git:
-    image: plugins/git
-    depth: 1
+kind: pipeline
+name: test
 
-pipeline:
-  prepare:
-    group: prepare
+clone:
+  depth: 1
+
+steps:
+  - name: composer
+    pull: always
+    image: stayallive/composer-install
+
+  - name: php71
+    pull: always
     image: stayallive/php:7.1
-    commands:
-      - docker-php-ext-enable zip mcrypt bcmath pcntl
-      - php -v
-      - composer self-update
-      - composer install --no-progress --no-scripts
-  test-php71:
-    group: test
-    image: stayallive/php:7.1
+    depends_on: [composer]
     commands:
       - docker-php-ext-enable zip mcrypt bcmath pcntl
       - php vendor/bin/phpunit --colors=never
-  test-php72:
-    group: test
+
+  - name: php72
+    pull: always
     image: stayallive/php:7.2
+    depends_on: [composer]
     commands:
       - docker-php-ext-enable zip bcmath pcntl
       - php vendor/bin/phpunit --colors=never
-  test-php73:
-    group: test
+
+  - name: php73
+    pull: always
     image: stayallive/php:7.3
+    depends_on: [composer]
     commands:
       - docker-php-ext-enable zip bcmath pcntl
       - php vendor/bin/phpunit --colors=never
