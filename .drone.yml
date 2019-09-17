@@ -9,14 +9,6 @@ steps:
     pull: always
     image: stayallive/composer-install
 
-  - name: php71
-    pull: always
-    image: stayallive/php:7.1
-    depends_on: [composer]
-    commands:
-      - docker-php-ext-enable zip mcrypt bcmath pcntl
-      - php vendor/bin/phpunit --colors=never
-
   - name: php72
     pull: always
     image: stayallive/php:7.2
