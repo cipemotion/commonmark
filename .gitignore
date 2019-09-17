@@ -10,6 +10,9 @@
 composer.lock
 composer.phar
 
+# PHPUnit
+.phpunit.result.cache
+
 # Environment config
 .env
 .env.gen
