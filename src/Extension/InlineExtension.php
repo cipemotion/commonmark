@@ -46,16 +46,16 @@ final class InlineExtension implements ExtensionInterface
             ->addBlockRenderer(BlockElement\Document::class, new BlockRenderer\DocumentRenderer)
             ->addBlockRenderer(BlockElement\Paragraph::class, new BlockRenderer\ParagraphRenderer)
             ->addInlineParser(new InlineParser\EntityParser)
-            ->addInlineParser(new InlineParser\EscapableParser)
             ->addInlineParser(new InlineParser\NewlineParser)
             ->addInlineParser(new InlineParser\BacktickParser)
+            ->addInlineParser(new InlineParser\EscapableParser)
             ->addInlineParser(new InlineParser\OpenBracketParser)
             ->addInlineParser(new InlineParser\CloseBracketParser)
-            ->addInlineRenderer(InlineElement\Newline::class, new InlineRenderer\NewlineRenderer)
             ->addInlineRenderer(InlineElement\Code::class, new InlineRenderer\CodeRenderer)
             ->addInlineRenderer(InlineElement\Link::class, new InlineRenderer\LinkRenderer)
-            ->addInlineRenderer(InlineElement\Strong::class, new InlineRenderer\StrongRenderer)
             ->addInlineRenderer(InlineElement\Text::class, new InlineRenderer\TextRenderer)
+            ->addInlineRenderer(InlineElement\Strong::class, new InlineRenderer\StrongRenderer)
+            ->addInlineRenderer(InlineElement\Newline::class, new InlineRenderer\NewlineRenderer)
             ->addInlineRenderer(InlineElement\Emphasis::class, new InlineRenderer\EmphasisRenderer);
 
         // Add custom elements en renderers
