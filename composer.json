@@ -10,7 +10,7 @@
     ],
     "require": {
         "php": "^7.4 | ^8.0",
-        "league/commonmark": "2.0.0-rc1"
+        "league/commonmark": "^2.0"
     },
     "require-dev": {
         "phpunit/phpunit": "^9.5",
@@ -27,5 +27,5 @@
         "phpcs": "vendor/bin/php-cs-fixer fix",
         "phpcs-ci": "vendor/bin/php-cs-fixer fix --dry-run --diff"
     },
-    "minimum-stability": "stable"
+    "minimum-stability": "rc"
 }
