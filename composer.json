@@ -27,5 +27,5 @@
         "phpcs": "vendor/bin/php-cs-fixer fix",
         "phpcs-ci": "vendor/bin/php-cs-fixer fix --dry-run --diff"
     },
-    "minimum-stability": "rc"
+    "minimum-stability": "RC"
 }
