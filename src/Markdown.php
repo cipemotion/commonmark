@@ -2,8 +2,9 @@
 
 namespace CipeMotion\CommonMark;
 
-use League\CommonMark\Environment;
-use League\CommonMark\CommonMarkConverter;
+use League\CommonMark\Util\HtmlFilter;
+use League\CommonMark\MarkdownConverter;
+use League\CommonMark\Environment\Environment;
 use CipeMotion\CommonMark\Extension\InlineExtension;
 
 class Markdown
@@ -13,16 +14,16 @@ class Markdown
      *
      * @param bool $allowHtml
      *
-     * @return \League\CommonMark\CommonMarkConverter
+     * @return \League\CommonMark\MarkdownConverter
      */
-    public static function getInlineConverter($allowHtml = false): CommonMarkConverter
+    public static function getInlineConverter(bool $allowHtml = false): MarkdownConverter
     {
-        $environment = new Environment;
+        $environment = new Environment([
+            'html_input' => $allowHtml ? HtmlFilter::ALLOW : HtmlFilter::STRIP,
+        ]);
 
-        $environment->addExtension(new InlineExtension(!$allowHtml));
+        $environment->addExtension(new InlineExtension);
 
-        return new CommonMarkConverter([
-            'html_input' => $allowHtml ? 'allow' : 'strip',
-        ], $environment);
+        return new MarkdownConverter($environment);
     }
 }

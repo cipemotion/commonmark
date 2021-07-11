@@ -10,7 +10,8 @@
 composer.lock
 composer.phar
 
-# PHPUnit
+# Caches
+.php-cs-fixer.cache
 .phpunit.result.cache
 
 # Environment config
