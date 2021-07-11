@@ -18,8 +18,10 @@ Supports the following inline syntax:
 ### Usage
 
 ```php
-// When `$allowHtml` is `true` HTML is _not_ removed in the output, default is false 
+// When `$allowHtml` is `true` HTML is _not_ removed in the output, default is false
 $converter = \CipeMotion\CommonMark\Markdown::getInlineConverter($allowHtml);
 
-$html = $converter->convertToHtml('This is _awesome_!');
+$html = $converter->convertToHtml('This is _awesome_!')->getContent();
+// or
+$html = (string)$converter->convertToHtml('This is _awesome_!');
 ```

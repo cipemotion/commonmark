@@ -64,10 +64,10 @@ class InlineCommonMarkTest extends TestCase
     }
 
     /** @dataProvider caseProvider */
-    public function test_custom_inline_converter(string $markdown, string $expected)
+    public function testCustomInlineConverter(string $markdown, string $expected)
     {
         $converter = Markdown::getInlineConverter();
 
-        $this->assertEquals($expected, $converter->convertToHtml($markdown));
+        $this->assertEquals($expected, $converter->convertToHtml($markdown)->getContent());
     }
 }
