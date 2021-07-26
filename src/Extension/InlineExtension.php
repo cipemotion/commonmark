@@ -2,67 +2,38 @@
 
 namespace CipeMotion\CommonMark\Extension;
 
+use League\CommonMark as Core;
+use League\CommonMark\Extension\CommonMark;
 use League\CommonMark\Extension\ExtensionInterface;
-use League\CommonMark\Block\Element as BlockElement;
-use League\CommonMark\Inline\Parser as InlineParser;
-use League\CommonMark\Block\Renderer as BlockRenderer;
-use League\CommonMark\Inline\Element as InlineElement;
-use League\CommonMark\ConfigurableEnvironmentInterface;
-use League\CommonMark\Inline\Renderer as InlineRenderer;
-use CipeMotion\CommonMark\Inline\Element as CustomElement;
-use CipeMotion\CommonMark\Inline\Renderer as CustomRenderer;
-use CipeMotion\CommonMark\Inline\Processor as CustomProcessor;
+use League\CommonMark\Node\Inline as InlineElement;
+use League\CommonMark\Renderer\Block as BlockRenderer;
+use League\CommonMark\Renderer\Inline as InlineRenderer;
+use League\CommonMark\Environment\EnvironmentBuilderInterface;
+use League\CommonMark\Extension\Strikethrough as StrikethroughExtension;
+use CipeMotion\CommonMark\Delimiter\Processor\SingleCharacterDelimiterProcessor;
 
 final class InlineExtension implements ExtensionInterface
 {
-    /**
-     * Should we render safely and strip out any HTML.
-     *
-     * @var bool
-     */
-    protected $safe;
-
-    /**
-     * InlineExtension constructor.
-     *
-     * @param bool $safe
-     */
-    public function __construct($safe = true)
+    public function register(EnvironmentBuilderInterface $environment): void
     {
-        $this->safe = $safe;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function register(ConfigurableEnvironmentInterface $environment): void
-    {
-        $environment->setConfig([
-            'html_input' => $this->safe ? 'strip' : 'allow',
-        ]);
-
-        // Add included elements and renderers
         $environment
-            ->addBlockRenderer(BlockElement\Document::class, new BlockRenderer\DocumentRenderer)
-            ->addBlockRenderer(BlockElement\Paragraph::class, new BlockRenderer\ParagraphRenderer)
-            ->addInlineParser(new InlineParser\EntityParser)
-            ->addInlineParser(new InlineParser\NewlineParser)
-            ->addInlineParser(new InlineParser\BacktickParser)
-            ->addInlineParser(new InlineParser\EscapableParser)
-            ->addInlineParser(new InlineParser\OpenBracketParser)
-            ->addInlineParser(new InlineParser\CloseBracketParser)
-            ->addInlineRenderer(InlineElement\Code::class, new InlineRenderer\CodeRenderer)
-            ->addInlineRenderer(InlineElement\Link::class, new InlineRenderer\LinkRenderer)
-            ->addInlineRenderer(InlineElement\Text::class, new InlineRenderer\TextRenderer)
-            ->addInlineRenderer(InlineElement\Strong::class, new InlineRenderer\StrongRenderer)
-            ->addInlineRenderer(InlineElement\Newline::class, new InlineRenderer\NewlineRenderer)
-            ->addInlineRenderer(InlineElement\Emphasis::class, new InlineRenderer\EmphasisRenderer);
-
-        // Add custom elements en renderers
-        $environment
-            ->addDelimiterProcessor(new CustomProcessor\DelDelimiter)
-            ->addDelimiterProcessor(new CustomProcessor\BoldDelimiter)
-            ->addDelimiterProcessor(new CustomProcessor\EmphasisDelimiter)
-            ->addInlineRenderer(CustomElement\Del::class, new CustomRenderer\Del);
+            ->addInlineParser(new Core\Parser\Inline\NewlineParser, 200)
+            ->addInlineParser(new CommonMark\Parser\Inline\BacktickParser, 150)
+            ->addInlineParser(new CommonMark\Parser\Inline\EscapableParser, 80)
+            ->addInlineParser(new CommonMark\Parser\Inline\EntityParser, 70)
+            ->addInlineParser(new CommonMark\Parser\Inline\CloseBracketParser, 30)
+            ->addInlineParser(new CommonMark\Parser\Inline\OpenBracketParser, 20)
+            ->addRenderer(InlineElement\Text::class, new InlineRenderer\TextRenderer)
+            ->addRenderer(InlineElement\Newline::class, new InlineRenderer\NewlineRenderer)
+            ->addRenderer(Core\Node\Block\Document::class, new BlockRenderer\DocumentRenderer)
+            ->addRenderer(Core\Node\Block\Paragraph::class, new BlockRenderer\ParagraphRenderer)
+            ->addRenderer(CommonMark\Node\Inline\Code::class, new CommonMark\Renderer\Inline\CodeRenderer)
+            ->addRenderer(CommonMark\Node\Inline\Link::class, new CommonMark\Renderer\Inline\LinkRenderer)
+            ->addRenderer(CommonMark\Node\Inline\Strong::class, new CommonMark\Renderer\Inline\StrongRenderer)
+            ->addRenderer(CommonMark\Node\Inline\Emphasis::class, new CommonMark\Renderer\Inline\EmphasisRenderer)
+            ->addRenderer(StrikethroughExtension\Strikethrough::class, new StrikethroughExtension\StrikethroughRenderer)
+            ->addDelimiterProcessor(new SingleCharacterDelimiterProcessor('_', CommonMark\Node\Inline\Emphasis::class))
+            ->addDelimiterProcessor(new SingleCharacterDelimiterProcessor('*', CommonMark\Node\Inline\Strong::class))
+            ->addDelimiterProcessor(new SingleCharacterDelimiterProcessor('~', StrikethroughExtension\Strikethrough::class));
     }
 }

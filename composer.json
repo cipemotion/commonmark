@@ -9,16 +9,22 @@
         }
     ],
     "require": {
-        "php": ">=7.2",
-        "league/commonmark": "^1.0"
+        "php": "^7.4 || ^8.0",
+        "league/commonmark": "^2.0"
     },
     "require-dev": {
-        "phpunit/phpunit": "^8.3"
+        "phpunit/phpunit": "^9.5",
+        "friendsofphp/php-cs-fixer": "^3.0"
     },
     "autoload": {
         "psr-4": {
             "CipeMotion\\CommonMark\\": "src"
         }
     },
-    "minimum-stability": "stable"
+    "scripts": {
+        "test": "vendor/bin/phpunit --stop-on-failure",
+        "test-ci": "vendor/bin/phpunit --colors=never",
+        "phpcs": "vendor/bin/php-cs-fixer fix",
+        "phpcs-ci": "vendor/bin/php-cs-fixer fix --dry-run --diff"
+    }
 }
